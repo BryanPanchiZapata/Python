@@ -39,7 +39,6 @@ class Auto:
 
     @staticmethod
     def validar_kilometraje(auto1, auto2):
-        """Verifica si dos autos tienen el mismo kilometraje."""
         return auto1.kilometraje == auto2.kilometraje
 
     @staticmethod
