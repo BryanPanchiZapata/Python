@@ -1,12 +1,14 @@
+from datetime import datetime
+
 class Auto:
     def __init__(self, marca, modelo, anio):
         self.marca = marca
         self.modelo = modelo
         self.anio = anio
-        self.kilometraje = 0  
+        self.kilometraje = 0  # Todos los autos nuevos empiezan con 0 km.
 
     def mostrar_informacion(self):
-        print(f"Marca: {self.marca}, Modelo: {self.modelo}, Año: {self.anio}")
+        print(f"Marca: {self.marca}, Modelo: {self.modelo}, Año: {self.anio}, Kilometraje: {self.kilometraje} km")
 
     def actualizar_kilometraje(self, kilometraje):
         if kilometraje >= self.kilometraje:
@@ -30,12 +32,43 @@ class Auto:
         else:
             print("¡Ya déjame descansar por favor!")
 
+    @classmethod
+    def auto_nuevo(cls):
+        """Crea una instancia de Auto del año actual y de la marca Toyota."""
+        anio_actual = datetime.now().year
+        return cls("Toyota", "Modelo genérico", anio_actual)
 
-mi_auto = Auto("Audi", "Serie 4", 2022)
+    @staticmethod
+    def validar_kilometraje(auto1, auto2):
+        """Verifica si dos autos tienen el mismo kilometraje."""
+        return auto1.kilometraje == auto2.kilometraje
 
-mi_auto.mostrar_informacion()          
-mi_auto.actualizar_kilometraje(50000)  
-mi_auto.realizar_viaje(5000)           
-mi_auto.estado_auto()                  
-mi_auto.actualizar_kilometraje(10000)  
-mi_auto.realizar_viaje(-100)          
+    @staticmethod
+    def descripcion_auto(auto):
+        """Muestra una breve descripción del auto."""
+        print(f"El auto {auto.marca} modelo {auto.modelo} del año {auto.anio} tiene {auto.kilometraje} km.")
+
+    @classmethod
+    def auto_personalizado(cls, marca, modelo):
+        """Permite crear una instancia de Auto con la marca y modelo deseados, del año actual."""
+        anio_actual = datetime.now().year
+        return cls(marca, modelo, anio_actual)
+
+
+# Ejemplo de uso
+auto1 = Auto("Honda", "Civic", 2018)
+auto2 = Auto.auto_nuevo()
+auto3 = Auto.auto_personalizado("Ford", "Mustang")
+
+auto1.actualizar_kilometraje(25000)
+auto2.realizar_viaje(5000)
+
+print(f"¿Auto1 y Auto2 tienen el mismo kilometraje? {Auto.validar_kilometraje(auto1, auto2)}")
+
+auto1.estado_auto()
+auto2.estado_auto()
+auto3.estado_auto()
+
+Auto.descripcion_auto(auto1)
+Auto.descripcion_auto(auto2)
+Auto.descripcion_auto(auto3)
