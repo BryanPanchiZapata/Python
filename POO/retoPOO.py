@@ -5,7 +5,7 @@ class Auto:
         self.marca = marca
         self.modelo = modelo
         self.anio = anio
-        self.kilometraje = 0  # Todos los autos nuevos empiezan con 0 km.
+        self.kilometraje = 0 
 
     def mostrar_informacion(self):
         print(f"Marca: {self.marca}, Modelo: {self.modelo}, Año: {self.anio}, Kilometraje: {self.kilometraje} km")
@@ -34,7 +34,6 @@ class Auto:
 
     @classmethod
     def auto_nuevo(cls):
-        """Crea una instancia de Auto del año actual y de la marca Toyota."""
         anio_actual = datetime.now().year
         return cls("Toyota", "Modelo genérico", anio_actual)
 
@@ -45,17 +44,13 @@ class Auto:
 
     @staticmethod
     def descripcion_auto(auto):
-        """Muestra una breve descripción del auto."""
         print(f"El auto {auto.marca} modelo {auto.modelo} del año {auto.anio} tiene {auto.kilometraje} km.")
 
     @classmethod
     def auto_personalizado(cls, marca, modelo):
-        """Permite crear una instancia de Auto con la marca y modelo deseados, del año actual."""
         anio_actual = datetime.now().year
         return cls(marca, modelo, anio_actual)
 
-
-# Ejemplo de uso
 auto1 = Auto("Honda", "Civic", 2018)
 auto2 = Auto.auto_nuevo()
 auto3 = Auto.auto_personalizado("Ford", "Mustang")
