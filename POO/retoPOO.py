@@ -35,7 +35,9 @@ class Auto:
     @classmethod
     def auto_nuevo(cls):
         anio_actual = datetime.now().year
-        return cls("Toyota", "Modelo genérico", anio_actual)
+        marca = "Toyota"
+        modelo = "Modelo genérico"
+        return cls(marca, modelo, anio_actual)
 
     @staticmethod
     def validar_kilometraje(auto1, auto2):
